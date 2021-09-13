@@ -10,7 +10,7 @@ pipeline {
               // sh 'java -version'
               echo "Get working directory"
               sh 'pwd'
-              sh 'python -version'
+              sh 'python --version'
           }
       }
    }
