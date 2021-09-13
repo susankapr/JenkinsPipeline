@@ -9,7 +9,7 @@ pipeline {
           steps {
               // sh 'java -version'
               echo "Get working directory"
-              sh 'pwd'
+              bash 'pwd'
               sh 'python --version'
               sh 'pip --version'
               sh 'pip install cfn-lint'
