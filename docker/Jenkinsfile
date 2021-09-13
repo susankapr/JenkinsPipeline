@@ -17,7 +17,7 @@ pipeline {
               // sh "cfn-lint -f pretty templates/*"
               sh "pip install bash"
               sh "which bash"
-              sh "//bin//bash -c '\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
+              bash "bash -c '\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
           }
       }
    }
