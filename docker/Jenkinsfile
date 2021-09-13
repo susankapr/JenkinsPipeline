@@ -14,7 +14,7 @@ pipeline {
               sh "pip --version"
               sh "pip install cfn-lint"
               sh "set -s globstar"
-              sh "cfn-lint -f junit templates/cfn-example2.yml"
+              sh "cfn-lint -f junit templates/cfn-example.yml"
           }
       }
    }
