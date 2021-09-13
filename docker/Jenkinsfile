@@ -9,12 +9,12 @@ pipeline {
           steps {
               // sh 'java -version'
               echo "Get working directory"
-              bash 'pwd'
+              sh 'pwd'
               sh 'python --version'
               sh 'pip --version'
               sh 'pip install cfn-lint'
               // sh 'shopt -s globstar'
-             sh 'cfn-lint templates/cfn-example2.yml'
+              sh 'cfn-lint templates/cfn-example2.yml'
           }
       }
    }
