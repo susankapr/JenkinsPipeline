@@ -11,6 +11,7 @@ pipeline {
               echo "Get working directory"
               sh 'pwd'
               sh 'python --version'
+              sh 'pip --version'
           }
       }
    }
