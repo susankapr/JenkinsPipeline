@@ -16,7 +16,8 @@ pipeline {
               sh "set -s globstar"
               // sh "cfn-lint -f pretty templates/*"
               sh "pip install bash"
-              sh "bash -c '\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
+              sh "which bash"
+              // sh "bash -c '\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
           }
       }
    }
