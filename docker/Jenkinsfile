@@ -13,7 +13,7 @@ pipeline {
               sh 'python --version'
               sh 'pip --version'
               sh 'pip install cfn-lint'
-              sh 'setopt -s globstar'
+              sh 'shopt -s globstar'
              // sh 'cfn-lint templates/**'
           }
       }
