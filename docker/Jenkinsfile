@@ -12,6 +12,7 @@ pipeline {
               sh 'pwd'
               sh 'python --version'
               sh 'pip --version'
+              sh 'pip install -y cfn-lint'
           }
       }
    }
