@@ -28,16 +28,16 @@ pipeline {
           }
       }
    }
-   post {
-      always {
-         junit(
-            allowEmptyResults: true,
-            testResults: '*.xml'
-         )
-         recordIssues(
-            enabledForFailure: true, aggregatingResults: true,
-            tools: [java(), checkStyle(pattern: 'main.xml', reportEncoding: 'UTF-8')]
-         )
-      }
+   // post {
+   //    always {
+   //       junit(
+   //          allowEmptyResults: true,
+   //          testResults: '*.xml'
+   //       )
+   //       recordIssues(
+   //          enabledForFailure: true, aggregatingResults: true,
+   //          tools: [java(), checkStyle(pattern: 'main.xml', reportEncoding: 'UTF-8')]
+   //       )
+   //    }
    }
 }
