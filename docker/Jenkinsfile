@@ -12,7 +12,7 @@ pipeline {
               sh "pwd"
               sh "python --version"
               sh "pip --version"
-              // sh "pip install cfn-lint"
+              sh "pip install cfn-lint"
               sh "set -s globstar"
               sh "cfn-lint -f junit templates/*"
               // sh "pip install bash"
