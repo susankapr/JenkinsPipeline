@@ -14,11 +14,23 @@ pipeline {
               sh "pip --version"
               // sh "pip install cfn-lint"
               sh "set -s globstar"
-              // sh "cfn-lint -f pretty templates/*"
-              sh "pip install bash"
-              sh "which bash"
-              bash "bash -c '\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
+              sh "cfn-lint -f junit templates/*"
+              // sh "pip install bash"
+              // sh "which bash"
+              // bash "bash -c '\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
           }
+      }
+   }
+   post {
+      always {
+         junit(
+            allowEmptyResults: true,
+            testResults: '*.xml'
+         )
+         recordIssues(
+            enabledForFailure: true, aggregatingResults: true,
+            tools: [java(), checkStyle(pattern: 'main.xml', reportEncoding: 'UTF-8')]
+         )
       }
    }
 }
