@@ -1,33 +1,25 @@
 pipeline {
-   agent {
-      docker { image 'python:3.7.2' }
-   //    label 'slave'
-   }
-   
+   agent none
    stages {
-      stage('Hello') {
-          steps {
-              // sh 'java -version'
-              echo "Get working directory"
-              sh "pwd"
-              sh "python --version"
-              sh "pip --version"
-              sh "set -s globstar"
-              // sh "pip install cfn-lint"
-              // sh "cfn-lint -f junit --output-file output.xml templates/*"
-              sh "pip install bash"
-              sh "which bash"
-              sh 'bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"'
-              // sh "echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile"
-              sh 'echo "finished brew install. now eval-ing"'
-              sh 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-              // sh 'test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)'
-              // sh 'test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)'             
-              sh 'echo "now installing gcc"'
-              sh 'brew install gcc'
-              sh 'brew install cloudformation-guard'
-              sh 'cfn-guard --help'
-          }
+      stage('Lint') {
+         agent {
+            docker { image 'alpine/cfn-lint' }
+         }
+         steps {
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+               sh "cfn-lint -f pretty templates/*"
+            }
+         }
+      }
+      stage('Nag') {
+         agent {
+            docker { image 'alpine/cfn-nag' }
+         }
+         steps {
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+               sh "cfn_nag_scan --input-path templates/*"
+            }
+         }
       }
    }
    // post {
