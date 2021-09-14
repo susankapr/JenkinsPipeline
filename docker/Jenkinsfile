@@ -20,8 +20,8 @@ pipeline {
               sh 'bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"'
               // sh "echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile"
               sh 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-              sh 'test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)'
-              sh 'test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)'             
+              // sh 'test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)'
+              //  sh 'test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)'             
               sh 'brew install gcc'
               sh 'brew install cloudformation-guard'
               sh 'cfn-guard --help'
