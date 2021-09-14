@@ -22,6 +22,9 @@ pipeline {
               sh 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
               sh 'test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)'
               sh 'test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)'             
+              sh 'brew install gcc'
+              sh 'brew install cloudformation-guard'
+              sh 'cfn-guard --help'
           }
       }
    }
