@@ -18,8 +18,10 @@ pipeline {
               sh "pip install bash"
               sh "which bash"
               sh 'bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"'
-              sh "echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"' >> /root/.profile"
+              // sh "echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile"
               sh 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+              sh 'test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)'
+              sh 'test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)'             
           }
       }
    }
