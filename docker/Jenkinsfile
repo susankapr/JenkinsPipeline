@@ -39,5 +39,5 @@ pipeline {
    //          tools: [java(), checkStyle(pattern: 'main.xml', reportEncoding: 'UTF-8')]
    //       )
    //    }
-   }
+   // }
 }
