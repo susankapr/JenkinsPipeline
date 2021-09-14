@@ -3,7 +3,9 @@ pipeline {
    stages {
       stage('Lint') {
          agent {
-            docker { image 'alpine/cfn-lint' }
+            docker { image 'alpine/cfn-lint'
+                     args '--entrypoint='
+            }
          }
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -13,7 +15,9 @@ pipeline {
       }
       stage('Nag') {
          agent {
-            docker { image 'alpine/cfn-nag' }
+            docker { image 'alpine/cfn-nag'
+                     args '--entrypoint='
+            }
          }
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
