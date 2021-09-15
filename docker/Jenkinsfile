@@ -1,5 +1,10 @@
 pipeline {
-   agent none
+   agent {
+        docker { image 'homebrew/brew'
+                 reuseNode true
+                 args '--entrypoint='
+        }
+   }
    stages {
 //      stage('Cfn-lint - check cloud formation syntax') {
 //         agent {
@@ -26,17 +31,12 @@ pipeline {
 //         }
 //      }
       stage('Cfn-guard - check cloud formation policies') {
-         agent {
-            docker { image 'homebrew/brew'
-                     args '--entrypoint='
-            }
-         }
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                sh "brew install cfn-lint"
                sh "brew install cloudformation-guard"
                
-               sh "cfn-lint --output-file lint-output.json -f json templates/*"
+               sh "cfn-lint -f json templates/*"
                sh "cfn-guard validate -p --data templates --rules guard-rules"
             }
          }
