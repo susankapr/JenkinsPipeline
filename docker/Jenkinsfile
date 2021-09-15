@@ -34,9 +34,10 @@ pipeline {
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                sh "brew install cfn-lint"
-               sh "cfn-lint -f json templates/*"
                sh "brew install cloudformation-guard"
-               sh "cfn-guard validate -o json --data templates --rules guard-rules"
+               
+               sh "cfn-lint --output-file lint-output.json -f json templates/*"
+               sh "cfn-guard validate -p --data templates --rules guard-rules"
             }
          }
       }
