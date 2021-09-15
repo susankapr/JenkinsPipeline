@@ -35,7 +35,7 @@ pipeline {
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                sh "brew install cloudformation-guard"
-               sh "cfn-guard validate -o single-line-summary --data templates --rules rules"
+               sh "cfn-guard validate -o single-line-summary --data templates --rules guard-rules"
             }
          }
       }
