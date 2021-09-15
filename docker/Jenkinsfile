@@ -21,7 +21,7 @@ pipeline {
          }
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-               sh "cfn_nag_scan --input-path templates/volume.yml"
+               sh "cfn_nag_scan -g --input-path templates/*"
             }
          }
       }
