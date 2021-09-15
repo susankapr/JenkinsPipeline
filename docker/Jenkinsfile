@@ -41,7 +41,7 @@ pipeline {
    }
    post {
       always {
-          recordIssues( enabledForFailure: true, aggregatingResults: true, tool: issues() )
+          recordIssues( enabledForFailure: false, aggregatingResults: true, tool: issues() )
       }
    }
 }
