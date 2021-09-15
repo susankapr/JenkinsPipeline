@@ -39,14 +39,14 @@ pipeline {
       stage('Cfn-lint - check cloud formation syntax') {
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {               
-               sh "cfn-lint -f json templates/*"
+               sh "cfn-lint --output-file lint-output.json -f json templates/*"
             }
          }
       }
       stage('Cfn-guard - check cloud formation policies') {
          steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-               sh "cfn-guard validate -p --data templates --rules guard-rules"
+               sh "cfn-guard validate -p --data templates --rules guard-rules > guard-output.json"
             }
          }
       }
